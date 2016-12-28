@@ -1,0 +1,161 @@
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+  <style>
+    #mapd7fee97009914672b05b05b80339d4f9 {
+      height:100%;
+    }
+  </style> 
+</head>
+
+<body>
+  <div id="mapd7fee97009914672b05b05b80339d4f9"></div>
+
+<script text="text/javascript">
+
+var map = L.map('mapd7fee97009914672b05b05b80339d4f9');
+
+L.tileLayer(
+  "http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png",
+  {maxZoom:19, attribution: '<a href="https://github.com/jwass/mplleaflet">mplleaflet</a> | Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'}).addTo(map);
+
+//ADD Gage Points
+ var gjData2 =  {'features': [{'geometry': {'coordinates': [-77.106111, 38.804444],
+    'type': 'Point'},
+   'properties': {'AHPS ID': 'CRPV2'},
+   'type': 'Feature'},
+  {'geometry': {'coordinates': [-77.085833, 38.843333], 'type': 'Point'},
+   'properties': {'AHPS ID': 'AFRV2'},
+   'type': 'Feature'},
+  {'geometry': {'coordinates': [-77.053333, 38.840278000000005],
+    'type': 'Point'},
+   'properties': {'AHPS ID': 'ALEV2'},
+   'type': 'Feature'},
+  {'geometry': {'coordinates': [-76.966111, 38.952222], 'type': 'Point'},
+   'properties': {'AHPS ID': 'ACOM2'},
+   'type': 'Feature'},
+  {'geometry': {'coordinates': [-77.07055600000001, 38.797778],
+    'type': 'Point'},
+   'properties': {'AHPS ID': 'HPKV2'},
+   'type': 'Feature'},
+  {'geometry': {'coordinates': [-76.92611099999999, 38.960278],
+    'type': 'Point'},
+   'properties': {'AHPS ID': 'RVDM2'},
+   'type': 'Feature'},
+  {'geometry': {'coordinates': [-76.940278, 38.938056], 'type': 'Point'},
+   'properties': {'AHPS ID': 'BLDM2'},
+   'type': 'Feature'},
+  {'geometry': {'coordinates': [-76.950278, 38.914444], 'type': 'Point'},
+   'properties': {'AHPS ID': 'ANAD2'},
+   'type': 'Feature'},
+  {'geometry': {'coordinates': [-77.127778, 38.949721999999994],
+    'type': 'Point'},
+   'properties': {'AHPS ID': 'BRKM2'},
+   'type': 'Feature'},
+  {'geometry': {'coordinates': [-77.063056, 38.902221999999995],
+    'type': 'Point'},
+   'properties': {'AHPS ID': 'GTND2'},
+   'type': 'Feature'}],
+ 'type': 'FeatureCollection'}
+
+//ADD NWM Points
+
+ var gjData = {'features': [{'geometry': {'coordinates': [-77.09843444824219, 38.80470657348633],
+    'type': 'Point'},
+   'properties': {'NWM Station':  22339033},
+   'type': 'Feature'},
+  {'geometry': {'coordinates': [-77.070808, 38.844143], 'type': 'Point'},
+   'properties': { 'NWM Station': 22338859},
+   'type': 'Feature'},
+  {'geometry': {'coordinates': [-77.045265, 38.840675], 'type': 'Point'},
+   'properties': { 'NWM Station': 22340565},
+   'type': 'Feature'},
+  {'geometry': {'coordinates': [-76.973724, 38.958649], 'type': 'Point'},
+   'properties': { 'NWM Station': 22337977},
+   'type': 'Feature'},
+  {'geometry': {'coordinates': [-77.07480600000001, 38.798626],
+    'type': 'Point'},
+   'properties': { 'NWM Station': 22340591},
+   'type': 'Feature'},
+  {'geometry': {'coordinates': [-76.925377, 38.960857], 'type': 'Point'},
+   'properties': { 'NWM Station': 22337975},
+   'type': 'Feature'},
+  {'geometry': {'coordinates': [-76.944214, 38.942615999999994],
+    'type': 'Point'},
+   'properties': { 'NWM Station': 22338089},
+   'type': 'Feature'},
+  {'geometry': {'coordinates': [-76.95528399999999, 38.909351],
+    'type': 'Point'},
+   'properties': { 'NWM Station': 22338123},
+   'type': 'Feature'},
+  {'geometry': {'coordinates': [-77.133705, 38.954319], 'type': 'Point'},
+   'properties': { 'NWM Station': 4512772},
+   'type': 'Feature'},
+  {'geometry': {'coordinates': [-77.05866999999999, 38.898449],
+    'type': 'Point'},
+   'properties': { 'NWM Station': 22341029},
+   'type': 'Feature'}],
+ 'type': 'FeatureCollection'}
+
+var PointIcon = L.icon({
+  iconUrl: "https://cdn4.iconfinder.com/data/icons/shopping-doodle/512/Shopping-38-128.png",
+  iconSize: [25, 25],
+  iconAnchor: [8, 15],
+  popupAnchor: [0, -28]
+});
+
+var PointIcon2 = L.icon({
+  iconUrl: "https://cdn2.iconfinder.com/data/icons/oxygen/48x48/actions/flag-blue.png",
+  iconSize: [50, 50],
+  iconAnchor: [8, 15],
+  popupAnchor: [0, -28]
+});
+
+var featureLayer = new L.geoJson(gjData, {
+
+  pointToLayer: function (feature, latlng) {
+    return L.marker(latlng, {icon: PointIcon});
+    }, 
+
+    onEachFeature: function (feature, layer) {
+        
+        var popupContent = [];
+
+        for (var key in feature.properties) {
+            popupContent.push(key + ": " + feature.properties[key] );
+
+        }
+
+
+        layer.bindPopup(popupContent.join("<br/>"));
+    }}).addTo(map);
+
+
+var featureLayer2 = new L.geoJson(gjData2, {
+
+  pointToLayer: function (feature, latlng) {
+    return L.marker(latlng, {icon: PointIcon2});
+    }, 
+
+    onEachFeature: function (feature, layer) {
+        
+        var popupContent = [];
+
+        for (var key in feature.properties) {
+            popupContent.push(key + ": " + feature.properties[key] );
+
+        }
+
+
+        layer.bindPopup(popupContent.join("<br/>"));
+    }}).addTo(map);
+
+//ADD CENTER POINTS
+map.setView([38.80,-77.08], 14)
+
+
+
+
+</script>
+</body>
