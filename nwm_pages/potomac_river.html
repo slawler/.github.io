@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Seth Lawler</title>
+    <title>Potomac River</title>
 
 </head>
 
@@ -17,26 +17,9 @@
     <header id="top" class="header">
         <div class="text-vertical-center">
             <h1>Experimental Data Page<h1>
-            <h2>Potomac River</h2>
         </div>
     </header>
 
-    <!-- Header -->
-    <header id="top" class="header">
-        <div class="text-vertical-center">
-            <h3>Forecasts</h3>
-        </div>
-    </header>
-
-
-<div id="map">
-<div ALIGN=Left>
-    <iframe src="potomac_map.html" height="700" width="1000" > </iframe>
-</div>
-<h2> </h2>
-<h2> </h2>
-<h2> </h2>
-<h2> </h2>
 
 
   <style>
@@ -48,20 +31,49 @@
       text-align:center;
     }
   </style>
+
+
+<div class="container">
+<div ALIGN=Left>
+<iframe id="forecast_embed" type="text/html" frameborder="0" height="250" width="40%" src="http://forecast.io/embed/#lat=38.915&lon=-77.1&name=Potomac River near Washington DC"> </iframe>
+        <p></p>
+    </div>
+
+
+
+
+
 </head>
 
 <body>
+
+
 
   <div class="container">
     <img src="https://raw.githubusercontent.com/MasonFloodHazardsResearchLab/NationalWaterModel/master/plots/BRKM2.png" height="500" width="1000" />
     <p></p>
   </div>
 
+<div class="container"><div ALIGN=Left>
+    <script type="text/javascript" src="https://www.windfinder.com/widget/forecast/js/washington_east_potomac_park?unit_wave=ft&unit_rain=in&unit_temperature=f&unit_wind=kts&columns=3&days=3&show_day=1&show_pressure=0&show_temperature=0&show_clouds=0"></script><noscript><a rel='nofollow' href='https://www.windfinder.com/forecast/washington_east_potomac_park?utm_source=forecast&utm_medium=web&utm_campaign=homepageweather&utm_content=noscript-forecast'>Wind forecast for Washington/East Potomac Park</a> provided by <a rel='nofollow' href='https://www.windfinder.com?utm_source=forecast&utm_medium=web&utm_campaign=homepageweather&utm_content=noscript-logo'>windfinder.com</a></noscript>
+        <p></p>
+</div>
+
+
     <div class="container">
     <img src="https://raw.githubusercontent.com/MasonFloodHazardsResearchLab/NationalWaterModel/master/plots/GTND2.png" height="500" width="1000" />
     <p>*Stage data converted from discharge using USGS rating table where available </p>
     <p>**Where No stage\discharge data available, approximate datum shifts applied </p>
   </div>
+
+<div id="map">
+<div ALIGN=Left>
+    <iframe src="potomac_map.html" height="700" width="1000" > </iframe>
+</div>
+<h2> </h2>
+<h2> </h2>
+<h2> </h2>
+<h2> </h2>
 
 
 <footer>
