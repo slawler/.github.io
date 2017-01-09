@@ -1,0 +1,25 @@
+<html>
+<head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script>
+  var locations = ["Slide1.html", "Slide2.html", "Slide3.html",
+  "Slide4.html","Slide5.html","Slide6.html","Slide7.html","Slide8.html",
+  "Slide9.html","Slide10.html"];
+  var currentIndex = 0;
+  var len = locations.length;
+  $(document).ready(function(){
+    $(':button').click(function() {
+        currentIndex = this.value == "Next" ? 
+                currentIndex < len - 1 ? ++currentIndex : len - 1 : 
+                currentIndex > 0 ? --currentIndex : 0;
+        $('#frame').attr('src', locations[currentIndex]);
+    });
+  });
+</script>
+</head>
+<body>
+<input type = "button" value = "Previous" />&nbsp;<input type = "button" value = "Next" />
+<br />
+<iframe id="frame" src="Slide1.html"  height="500" width="1000" ></iframe>
+</body>
+</html>

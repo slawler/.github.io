@@ -22,73 +22,29 @@
 
 <head>
 <title>Experimental Output</title>
-<script type="text/javascript">
-var i = 0, imgsrc = new Array(), preload = new Array();
-imgsrc[0]="Slide1.JPG";
-imgsrc[1]="Slide2.JPG";
-imgsrc[2]="Slide3.JPG";
-imgsrc[3]="Slide4.JPG";
-imgsrc[4]="Slide5.JPG";
-imgsrc[5]="Slide6.JPG";
-imgsrc[6]="Slide7.JPG";
-imgsrc[7]="Slide8.JPG";
-imgsrc[8]="Slide9.JPG";
-imgsrc[9]="Slide10.JPG";
-imgsrc[10]="Slide11.JPG";
-imgsrc[11]="Slide12.JPG";
-imgsrc[12]="Slide13.JPG";
-imgsrc[13]="Slide14.JPG";
-imgsrc[14]="Slide15.JPG";
-imgsrc[15]="Slide16.JPG";
 
-for (var j=0;j<imgsrc.length;j++)
-{
-preload[j] = new Image;
-preload[j].src = imgsrc[j];
-}
-function mode(param)
-{
-smode=param;
-}
-function startSlideshow()
-{
-if(smode=="play")
-{
-document.getElementById("play").disabled="disabled";
-document.getElementById("pause").disabled="";
-document.getElementById("stop").disabled="";
-document.getElementById("slideshow").src=imgsrc[i];
-i++;
-setTimeout("startSlideshow()",1000);
-}
-else if(smode=="pause")
-{
-document.getElementById("pause").disabled="disabled";
-document.getElementById("play").disabled="";
-document.getElementById("play").value="Resume";
-}
-else if(smode=="stop")
-{
-document.getElementById("play").disabled="";
-document.getElementById("play").value="Play";
-document.getElementById("pause").disabled="disabled";
-document.getElementById("stop").disabled="disabled";
-document.getElementById("slideshow").src=imgsrc[0];
-i=0;
-}
-if(i==imgsrc.length)
-{
-i=0;
-}
-}
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script>
+  var locations = ["Slide1.html", "Slide2.html", "Slide3.html",
+  "Slide4.html","Slide5.html","Slide6.html","Slide7.html","Slide8.html",
+  "Slide9.html","Slide10.html"];
+  var currentIndex = 0;
+  var len = locations.length;
+  $(document).ready(function(){
+    $(':button').click(function() {
+        currentIndex = this.value == "Next" ? 
+                currentIndex < len - 1 ? ++currentIndex : len - 1 : 
+                currentIndex > 0 ? --currentIndex : 0;
+        $('#frame').attr('src', locations[currentIndex]);
+    });
+  });
 </script>
+
 </head>
 <body>
-<img id="slideshow" src="Slide1.JPG" height="500" width="1000" />
+<input type = "button" value = "Previous" />&nbsp;<input type = "button" value = "Next" />
 <br />
-<input id="play" type="button" value="Play" onclick="mode('play');startSlideshow();" />
-<input id="pause" type="button" value="Pause" disabled="disabled" onclick="mode('pause');startSlideshow();" />
-<input id="stop" type="button" value="Stop" disabled="disabled" onclick="mode('stop');startSlideshow();" />
+<iframe id="frame" src="Slide1.html"  height="500" width="1000" ></iframe>
 </body>
 
       <h2></h2>
@@ -97,14 +53,6 @@ i=0;
           <strong>Example Hydrographs</strong>
       </h2>
 
-        <h4>
-          <strong>Recent Riverine Peaks</strong>
-      </h4>
-
-
-  <div class="container">
-    <img class="LEFT-img" src="anacostia1.png"/ height="550" width="900" />
-  </div>
 
         <h4>
           <strong>Total Water Flood Hazards</strong>

@@ -1,0 +1,35 @@
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+  <style>
+    #mapd7fee97009914672b05b05b80339d4f9 {
+      height:100%;
+    }
+  </style> 
+</head>
+
+<body>
+  <div id="mapd7fee97009914672b05b05b80339d4f9"></div>
+
+<script text="text/javascript">
+
+var map = L.map('mapd7fee97009914672b05b05b80339d4f9');
+
+L.tileLayer(
+  "http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png",
+  {maxZoom:19, attribution: '<a href="https://github.com/jwass/mplleaflet">mplleaflet</a> | Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'}).addTo(map);
+
+var gjData =
+
+
+var featureLayer = new L.geoJson(gjData).addTo(map);
+
+//ADD CENTER POINTS
+map.setView([38.932 , -76.944], 13)
+
+
+
+//-76.944214, 38.942615999999994
+</script>
+</body>
